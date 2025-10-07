@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate repository structure
+        run: |
+          test -f template/index.html
+          test -f template/index.fa.html
+          test -f template/logo-dark.png
+
+      - name: Show success message
+        run: echo "Static template validated."
